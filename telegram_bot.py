@@ -31,14 +31,15 @@ log = logging.getLogger("bot")
 # ── Config ──────────────────────────────────────────────────────
 SETTINGS_FILE = Path(__file__).parent / "settings.json"
 WORK_DIR = Path(__file__).parent
-MODEL = "mimo-v2.5-pro"
-MAX_TOKENS = 4096
-MAX_HISTORY = 10
-BASE_URL = "https://token-plan-cn.xiaomimimo.com/anthropic"
-PROXY_URL = "http://127.0.0.1:10090"
+MODEL = _load_setting("model") or "mimo-v2.5-pro"
+MAX_TOKENS = int(_load_setting("max_tokens") or 4096)
+MAX_HISTORY = int(_load_setting("max_history") or 10)
+BASE_URL = _load_setting("base_url") or "https://api.anthropic.com"
+PROXY_URL = _load_setting("proxy") or ""
 
-os.environ.setdefault("HTTP_PROXY", PROXY_URL)
-os.environ.setdefault("HTTPS_PROXY", PROXY_URL)
+if PROXY_URL:
+    os.environ.setdefault("HTTP_PROXY", PROXY_URL)
+    os.environ.setdefault("HTTPS_PROXY", PROXY_URL)
 
 
 def _load_setting(key: str) -> str | None:

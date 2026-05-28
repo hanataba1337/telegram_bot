@@ -53,6 +53,5 @@ python telegram_bot.py
 
 ## 注意事项
 
-- 需要代理访问 Telegram API（默认 `http://127.0.0.1:10090`）
-- MiMo API 不支持图片分析，截图功能仅发送图片
+- 需要能访问 Telegram API 的网络环境
 - 不要让 AI 修改 `telegram_bot.py`，程序有保护机制

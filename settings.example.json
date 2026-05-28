@@ -1,4 +1,9 @@
 {
   "telegram_bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
-  "api_key": "YOUR_MIMO_API_KEY"
+  "api_key": "YOUR_API_KEY",
+  "model": "mimo-v2.5-pro",
+  "base_url": "https://api.anthropic.com",
+  "proxy": "",
+  "max_tokens": 4096,
+  "max_history": 10
 }
