@@ -31,15 +31,6 @@ log = logging.getLogger("bot")
 # ── Config ──────────────────────────────────────────────────────
 SETTINGS_FILE = Path(__file__).parent / "settings.json"
 WORK_DIR = Path(__file__).parent
-MODEL = _load_setting("model") or "mimo-v2.5-pro"
-MAX_TOKENS = int(_load_setting("max_tokens") or 4096)
-MAX_HISTORY = int(_load_setting("max_history") or 10)
-BASE_URL = _load_setting("base_url") or "https://api.anthropic.com"
-PROXY_URL = _load_setting("proxy") or ""
-
-if PROXY_URL:
-    os.environ.setdefault("HTTP_PROXY", PROXY_URL)
-    os.environ.setdefault("HTTPS_PROXY", PROXY_URL)
 
 
 def _load_setting(key: str) -> str | None:
@@ -49,6 +40,16 @@ def _load_setting(key: str) -> str | None:
     except (FileNotFoundError, json.JSONDecodeError):
         return os.environ.get(key.upper())
 
+
+MODEL = _load_setting("model") or "mimo-v2.5-pro"
+MAX_TOKENS = int(_load_setting("max_tokens") or 4096)
+MAX_HISTORY = int(_load_setting("max_history") or 10)
+BASE_URL = _load_setting("base_url") or "https://api.anthropic.com"
+PROXY_URL = _load_setting("proxy") or ""
+
+if PROXY_URL:
+    os.environ.setdefault("HTTP_PROXY", PROXY_URL)
+    os.environ.setdefault("HTTPS_PROXY", PROXY_URL)
 
 TELEGRAM_TOKEN = _load_setting("telegram_bot_token")
 ANTHROPIC_API_KEY = _load_setting("anthropic_api_key") or _load_setting("api_key")
